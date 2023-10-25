@@ -17,6 +17,12 @@ export class UsersService {
 
   public async signup(signupDto: SignupDto): Promise<User> {
     const user = new this.usersModel(signupDto);
+    const findEmail = await this.findByEmail(user.email);
+
+    if (findEmail) {
+      throw new NotFoundException('Email already registered.');
+    }
+
     return user.save();
   }
 
@@ -29,7 +35,9 @@ export class UsersService {
     if (!match) {
       throw new NotFoundException('Invalid credentials.');
     }
-
+    if (!user) {
+      throw new NotFoundException('Email not found.');
+    }
     const jwtToken = await this.authService.createAccessToken(user._id);
 
     return { name: user.name, jwtToken, email: user.email };
@@ -41,9 +49,7 @@ export class UsersService {
 
   private async findByEmail(email: string): Promise<User> {
     const user = await this.usersModel.findOne({ email });
-    if (!user) {
-      throw new NotFoundException('Email not found.');
-    }
+    
     return user;
   }
 
