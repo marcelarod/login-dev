@@ -28,19 +28,20 @@ export class UsersService {
 
   public async signin(
     signinDto: SigninDto,
-  ): Promise<{ name: string; jwtToken: string; email: string }> {
+  ): Promise<{  jwtToken: string; email: string }> {
     const user = await this.findByEmail(signinDto.email);
-    const match = await this.checkPassword(signinDto.password, user);
-
-    if (!match) {
-      throw new NotFoundException('Invalid credentials.');
-    }
     if (!user) {
       throw new NotFoundException('Email not found.');
     }
+
+    const match = await this.checkPassword(signinDto.password, user);
+    if (!match) {
+      throw new NotFoundException('Invalid credentials.');
+    }
+    
     const jwtToken = await this.authService.createAccessToken(user._id);
 
-    return { name: user.name, jwtToken, email: user.email };
+    return {  jwtToken, email: user.email };
   }
 
   public async findAll(): Promise<User[]> {
@@ -55,9 +56,7 @@ export class UsersService {
 
   private async checkPassword(password: string, user: User): Promise<boolean> {
     const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      throw new NotFoundException('Password not found.');
-    }
+  
     return match;
   }
 }
