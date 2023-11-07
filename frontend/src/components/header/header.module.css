@@ -1,0 +1,37 @@
+.logo img{
+  width: 73px;
+  height: 66px;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.containerHeader{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2rem 7rem;
+  align-items: center;
+}
+.options{
+  display: flex;
+  gap: 1rem;
+  height: 100%;
+}
+
+.options a{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 25px;
+  transition: all .1s ease-in;
+}
+
+.options a:hover{
+ color: #ea2845;
+}

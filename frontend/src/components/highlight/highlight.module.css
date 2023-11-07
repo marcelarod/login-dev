@@ -1,0 +1,42 @@
+
+.containerHighlight{
+  background: #f1f3f3;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.boxHighlight img{
+  width: 70px;
+  height: 70px;
+}
+.wrapperHighlight{
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.boxHighlight{
+  width: 19.5%;
+}
+
+.boxHighlight p{
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 300px;
+  margin: 20px auto;
+  line-height: 30px;
+  color: #000;
+}
+
+.boxHighlight h5{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  color: #ea2845;
+  margin: 40px 0 0;
+}
+
+
+
+
+
